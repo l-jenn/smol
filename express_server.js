@@ -14,8 +14,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/urls", (req, res) => {
-  const templateVars = { urls: urlDatabase };
+  const templateVars = { urls: urlDatabase }; // rmb: this object can store simple keys too, not just other objects like the "url database". ex. if it was const templateVars = { greeting: "hello world! "}, you can call it via <% greeting %>.
   res.render("urls_index", templateVars);
+});
+
+app.get("/hello", (req, res) => {
+  const templateVars = { greeting: 'meowmeow?!?' };
+  res.render("hello_world", templateVars);
 });
 
 app.get("/urls.json", (req, res) => {

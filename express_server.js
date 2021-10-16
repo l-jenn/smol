@@ -46,6 +46,11 @@ app.get("/hello", (req, res) => {
   res.send(`<html><body><center><img src="https://i.imgur.com/Lle1PoO.jpg"></img><p>Figure 1. angy</p></center></body></html>\n`);
 });
 
+app.post("/urls", (req, res) => {
+  console.log(req.body);  // log POST request body to console: should see { longURL: 'http://google.com' }
+  res.send("Ok");         // respond w/ 'Ok' (will be replaced)
+});
+
 app.listen(PORT, () => {
   console.log(`test - listening on port ${PORT}`);
 });

@@ -54,10 +54,6 @@ app.get("/urls/:shortURL", (req, res) => {
   res.render("urls_show", templateVars);
 });
 
-app.get("/hello", (req, res) => {
-  res.send(`<html><body><center><img src="https://i.imgur.com/Lle1PoO.jpg"></img><p>Figure 1. angy</p></center></body></html>\n`);
-});
-
 app.post("/urls", (req, res) => {
   // console.log(req.body);
 
@@ -66,6 +62,14 @@ app.post("/urls", (req, res) => {
   // console.log(urlDatabase);
   
   res.redirect(`/urls/${shortURL}`);
+});
+
+app.get("/u/:shortURL", (req, res) => {
+  let shortURL = req.params.shortURL;
+  console.log(shortURL);
+  const longURL = urlDatabase[shortURL];
+  console.log(longURL);
+  res.redirect(longURL);
 });
 
 app.listen(PORT, () => {

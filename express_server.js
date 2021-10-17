@@ -1,9 +1,8 @@
 const express = require("express");
-const bodyParser = require("body-parser"); // deprecated!!
 const app = express();
 const PORT = 8080;
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 
 app.set("view engine", "ejs");
 
@@ -60,12 +59,13 @@ app.get("/hello", (req, res) => {
 });
 
 app.post("/urls", (req, res) => {
-  console.log(req.body);  // log POST request body to console: should see { longURL: 'http://google.com' }
+  // console.log(req.body);
 
-  // save shortURL-longURL key-value pair are saved to urlDatabase
+  let shortURL = generateRandomString();
+  urlDatabase[shortURL] = req.body.longURL;
+  // console.log(urlDatabase);
   
-  //instead of saying 'Ok', respond w/ redirect
-  res.send("Ok");
+  res.redirect(`/urls/${shortURL}`);
 });
 
 app.listen(PORT, () => {

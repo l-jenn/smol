@@ -14,6 +14,19 @@ const urlDatabase = {
   "megachonk": "http://chonwk.cat"
 };
 
+function generateRandomString() {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const length = 5;
+  let randomString = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomNum = Math.floor(Math.random() * chars.length);
+    randomString += chars[randomNum];
+  }
+
+  return randomString;
+}
+
 app.get("/", (req, res) => {
   res.send("Hello!");
 });
@@ -48,15 +61,13 @@ app.get("/hello", (req, res) => {
 
 app.post("/urls", (req, res) => {
   console.log(req.body);  // log POST request body to console: should see { longURL: 'http://google.com' }
-  res.send("Ok");         // respond w/ 'Ok' (will be replaced)
+
+  // save shortURL-longURL key-value pair are saved to urlDatabase
+  
+  //instead of saying 'Ok', respond w/ redirect
+  res.send("Ok");
 });
 
 app.listen(PORT, () => {
   console.log(`test - listening on port ${PORT}`);
 });
-
-// also noticing that if i start the connection (node express_server in terminal), and add more keyvalue pairs to urlDatabase, then refresh the browser, the changes aren't retroactive/won't display. i'd need to end connection & reopen it. whereas, for the templating/HTML files, changes ARE retroactive upon browser refresh
-
-// the reason for this is that when i run the server, it moves the code/js into RAM and executes it. the js is stored in the memory & won't "refresh," while the ejs files are static, and so when i refresh the browser, it grabs the latest ver.
-
-// when i get to work w/ webpack dev server, it'll do the end/restart node automatically the moment i modify the js

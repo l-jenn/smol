@@ -78,3 +78,10 @@ app.get("/u/:shortURL", (req, res) => {
 app.listen(PORT, () => {
   console.log(`test - listening on port ${PORT}`);
 });
+
+//up to now, still unhandled are:
+// duplicate links
+// requests to nonexistent links (via /urls/:shorturl)
+// requests to nonexistent links (via /u/:shorturl) redirect to /u/undefined
+// -> curl -i will display status 302 Found, but location: undefined
+// urlDatabase wipe on server restart

@@ -84,6 +84,17 @@ app.post("/urls/:shortURL/delete", (req, res) => {
   res.redirect("/urls");
 });
 
+// Edit POST /urls/:shortURL
+app.post("/urls/:shortURL", (req, res) => {
+  let shortURL = req.params.shortURL;
+  let newURL = req.body.newURL;
+
+  urlDatabase[shortURL] = newURL;
+  console.log(urlDatabase);
+
+  res.redirect(`/urls/${shortURL}`);
+});
+
 app.listen(PORT, () => {
   console.log(`test - listening on port ${PORT}`);
 });

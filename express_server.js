@@ -90,7 +90,6 @@ app.post("/urls/:shortURL", (req, res) => {
   let newURL = req.body.newURL;
 
   urlDatabase[shortURL] = newURL;
-  console.log(urlDatabase);
 
   res.redirect(`/urls/${shortURL}`);
 });

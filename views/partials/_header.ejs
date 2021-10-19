@@ -11,11 +11,15 @@
       </div>
     </div>
     <div>
-      <form method="POST" action="/login">
+      <% if (!username) { %>
+        <form method="POST" action="/login">
         <label>Register</label>
         <input name="username">
         <button type="submit">Submit</button>
       </form>
+      <% } else { %>
+        <%= username %>
+      <% } %>
     </div>
   </nav>
 </header>

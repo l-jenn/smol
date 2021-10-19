@@ -70,14 +70,14 @@ app.post("/urls", (req, res) => {
 });
 
 app.get("/u/:shortURL", (req, res) => {
-  let shortURL = req.params.shortURL;
+  const shortURL = req.params.shortURL;
   const longURL = urlDatabase[shortURL];
   res.redirect(longURL);
 });
 
 // Delete POST /urls/:shortURL/delete
 app.post("/urls/:shortURL/delete", (req, res) => {
-  let shortURL =  req.params.shortURL;
+  const shortURL =  req.params.shortURL;
 
   delete urlDatabase[shortURL];
 
@@ -86,12 +86,19 @@ app.post("/urls/:shortURL/delete", (req, res) => {
 
 // Edit POST /urls/:shortURL
 app.post("/urls/:shortURL", (req, res) => {
-  let shortURL = req.params.shortURL;
-  let newURL = req.body.newURL;
+  const shortURL = req.params.shortURL;
+  const newURL = req.body.newURL;
 
   urlDatabase[shortURL] = newURL;
 
   res.redirect(`/urls/${shortURL}`);
+});
+
+// Add POST /login
+app.post("/login", (req, res) => {
+  const username = req.body.username;
+  res.cookie('username', username);
+  res.redirect("/urls");
 });
 
 app.listen(PORT, () => {

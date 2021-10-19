@@ -13,12 +13,14 @@
     <div>
       <% if (!username) { %>
         <form method="POST" action="/login">
-        <label>Register</label>
         <input name="username">
         <button type="submit">Submit</button>
       </form>
       <% } else { %>
-        <%= username %>
+      <form method="POST" action="/logout">
+      <%= username %>
+        <button type="submit">Logout</button>
+      </form>
       <% } %>
     </div>
   </nav>

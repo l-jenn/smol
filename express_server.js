@@ -103,6 +103,12 @@ app.post("/login", (req, res) => {
   res.redirect("/urls");
 });
 
+// Delete POST /logout
+app.post("/logout", (req, res) => {
+  res.clearCookie('username');
+  res.redirect("/urls");
+});
+
 app.listen(PORT, () => {
   console.log(`test - listening on port ${PORT}`);
 });

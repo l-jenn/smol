@@ -100,6 +100,7 @@ app.listen(PORT, () => {
 
 //up to now, still unhandled are:
 // duplicate links
+// urls not prefixed with http:// or https:// redirect to undefined
 // requests to nonexistent links (via /urls/:shorturl)
 // requests to nonexistent links (via /u/:shorturl) redirect to /u/undefined
 // -> curl -i will display status 302 Found, but location: undefined

@@ -28,35 +28,31 @@ function generateRandomString() {
   return randomString;
 }
 
-app.get("/", (req, res) => {
-  res.send("Hello!");
-});
-
+// GET /urls
 app.get("/urls", (req, res) => {
   const templateVars = { urls: urlDatabase, username: req.cookies["username"] };
   res.render("urls_index", templateVars);
 });
 
-app.get("/hello", (req, res) => {
-  const templateVars = { greeting: 'meowmeow?!?' };
-  res.render("hello_world", templateVars);
-});
-
+// GET /urls.json (example)
 app.get("/urls.json", (req, res) => {
   res.json(urlDatabase);
 });
 
+// GET /urls/new
 app.get("/urls/new", (req, res) => {
   const templateVars = { username: req.cookies["username"] };
   res.render("urls_new", templateVars);
 });
 
+// GET /urls/:shortURL
 app.get("/urls/:shortURL", (req, res) => {
   const templateVars = { smolURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL], username: req.cookies["username"] };
   // currently catches all urls; need to write if/else to catch if it's stored in db
   res.render("urls_show", templateVars);
 });
 
+// POST /urls
 app.post("/urls", (req, res) => {
   let shortURL = "";
 
@@ -71,6 +67,7 @@ app.post("/urls", (req, res) => {
   res.redirect(`/urls/${shortURL}`);
 });
 
+// GET /u/:shortURL
 app.get("/u/:shortURL", (req, res) => {
   const shortURL = req.params.shortURL;
   const longURL = urlDatabase[shortURL];

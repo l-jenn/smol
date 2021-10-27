@@ -15,6 +15,17 @@ const urlDatabase = {
   "megachonk": "http://chonwk.cat"
 };
 
+const users = {
+  'meow': {
+    email: 'hi@me.com',
+    password: '123'
+  },
+  'nyan': {
+    email: 'hehe@me.com',
+    password: '321'
+  }
+};
+
 function generateRandomString() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const length = 5;
@@ -28,11 +39,52 @@ function generateRandomString() {
   return randomString;
 }
 
+const checkUserByEmail = (email) => {
+  // if find user, return user
+
+  for (const userId in users) {
+    const user = users[userId];
+    if (user.email === email) {
+      return user;
+    }
+  }
+
+  // if none, return null
+  return null;
+};
+
 // GET /register
 app.get("/register", (req, res) => {
   const templateVars = {username: req.cookies["username"]};
-  
+
   res.render("register", templateVars);
+});
+
+// POST /register
+app.post("/register", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  // if neither are filled return 400
+  if (!email || !password) {
+    return res.status(400).send('both fields must not be blank');
+  }
+
+  // if email is taken, return 400
+  const user = checkUserByEmail(email);
+
+  if (user) {
+    return res.status(400).send('email already taken');
+  }
+
+  // if all is good, append these to users db. also, gen user id
+  const userId = generateRandomString();
+
+  users[userId] = { id: userId, email, password};
+  console.log(users);
+
+  res.cookie('userId', userId);
+  res.redirect("/urls");
 });
 
 // GET /urls

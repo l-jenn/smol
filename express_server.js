@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/urls", (req, res) => {
-  const templateVars = { urls: urlDatabase, username: req.cookies["username"] }; // rmb: this object can store simple keys too, not just other objects like the "url database". ex. if it was const templateVars = { greeting: "hello world! "}, you can call it via <% greeting %>.
+  const templateVars = { urls: urlDatabase, username: req.cookies["username"] };
   res.render("urls_index", templateVars);
 });
 
@@ -112,11 +112,3 @@ app.post("/logout", (req, res) => {
 app.listen(PORT, () => {
   console.log(`test - listening on port ${PORT}`);
 });
-
-//up to now, still unhandled are:
-// duplicate links
-// urls not prefixed with http:// or https:// redirect to undefined
-// requests to nonexistent links (via /urls/:shorturl)
-// requests to nonexistent links (via /u/:shorturl) redirect to /u/undefined
-// -> curl -i will display status 302 Found, but location: undefined
-// urlDatabase wipe on server restart

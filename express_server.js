@@ -28,6 +28,13 @@ function generateRandomString() {
   return randomString;
 }
 
+// GET /register
+app.get("/register", (req, res) => {
+  const templateVars = {username: req.cookies["username"]};
+  
+  res.render("register", templateVars);
+});
+
 // GET /urls
 app.get("/urls", (req, res) => {
   const templateVars = { urls: urlDatabase, username: req.cookies["username"] };

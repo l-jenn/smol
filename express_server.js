@@ -160,7 +160,7 @@ app.post("/logout", (req, res) => {
 
 // GET /urls
 app.get("/urls", (req, res) => {
-  const templateVars = { urls: urlDatabase, user: users[req.cookies["userId"]]};
+  const templateVars = { urls: urlDatabase, user: users[req.cookies["userId"]], userId: req.cookies.userId};
   res.render("urls_index", templateVars);
 });
 

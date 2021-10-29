@@ -17,10 +17,12 @@ const urlDatabase = {
 
 const users = {
   'meow': {
+    id: 'meow',
     email: 'hi@me.com',
     password: '123'
   },
   'nyan': {
+    id: 'nyan',
     email: 'hehe@me.com',
     password: '321'
   }

@@ -88,6 +88,45 @@ app.post("/register", (req, res) => {
   res.redirect("/urls");
 });
 
+// GET /login
+app.get("/login", (req, res) => {
+
+  const templateVars = {user: users[req.cookies["userId"]]};
+
+  res.render("login", templateVars);
+});
+
+// Add POST /login
+app.post("/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  if (!email || !password) {
+    res.status(400).send("both fields must not be blank");
+  }
+
+  // check if not user
+  const user = checkUserByEmail(email);
+
+  if (!user) {
+    return res.status(400).send("user doesn't exist");
+  }
+
+  if (user.password !== password) {
+    return res.status(400).send("incorrect login credentials");
+  }
+
+  res.cookie("userId", user.id);
+
+  res.redirect("/urls");
+});
+
+// Delete POST /logout
+app.post("/logout", (req, res) => {
+  res.clearCookie('userId');
+  res.redirect("/login");
+});
+
 // GET /urls
 app.get("/urls", (req, res) => {
   const templateVars = { urls: urlDatabase, user: users[req.cookies["userId"]]};
@@ -151,19 +190,6 @@ app.post("/urls/:shortURL", (req, res) => {
   urlDatabase[shortURL] = newURL;
 
   res.redirect(`/urls/${shortURL}`);
-});
-
-// Add POST /login
-app.post("/login", (req, res) => {
-  const username = req.body.username;
-  res.cookie('username', username);
-  res.redirect("/urls");
-});
-
-// Delete POST /logout
-app.post("/logout", (req, res) => {
-  res.clearCookie('username');
-  res.redirect("/urls");
 });
 
 app.listen(PORT, () => {

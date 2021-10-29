@@ -76,6 +76,15 @@ function checkIfUserIsLoggedIn(userId) {
   return false;
 }
 
+function personalUrls(userId) {
+  let personalList = {};
+  for (const id in urlDatabase) {
+    if (urlDatabase[id].userId === userId) {
+      personalList[id] = (urlDatabase[id]);
+    }
+  }
+  return personalList;
+}
 
 // GET /register
 app.get("/register", (req, res) => {
@@ -160,7 +169,15 @@ app.post("/logout", (req, res) => {
 
 // GET /urls
 app.get("/urls", (req, res) => {
-  const templateVars = { urls: urlDatabase, user: users[req.cookies["userId"]], userId: req.cookies.userId};
+  const userId = req.cookies["userId"];
+  if (!checkIfUserIsLoggedIn(userId)) {
+    return res.status(403).send("Please log in.");
+  }
+
+  const urls = personalUrls(userId);
+  console.log(urls);
+
+  const templateVars = { urls, user: users[req.cookies["userId"]]};
   res.render("urls_index", templateVars);
 });
 
@@ -228,7 +245,8 @@ app.post("/urls/:shortURL/delete", (req, res) => {
 app.post("/urls/:shortURL", (req, res) => {
   const shortURL = req.params.shortURL;
   const longURL = req.body.longURL;
-
+  console.log("uh",req.body.longURL);
+  console.log(urlDatabase[shortURL].longURL);
   urlDatabase[shortURL].longURL = longURL;
 
   res.redirect(`/urls/${shortURL}`);

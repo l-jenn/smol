@@ -9,10 +9,22 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 
 const urlDatabase = {
-  "sW9gr": "http://http.cat",
-  "4pRZq": "http://duckduckgo.com",
-  "hehechomky": "http://chonk.cat",
-  "megachonk": "http://chonwk.cat"
+  "sW9gr": {
+    longURL: "http://http.cat",
+    userId: "meow"
+  },
+  "4pRZq": {
+    longURL: "http://duckduckgo.com",
+    userId: "meow"
+  },
+  "hehechomky": {
+    longURL: "http://chonk.cat",
+    userId: "nyan"
+  },
+  "megachonk": {
+    longURL: "http://chonwk.cat",
+    userId: "meow"
+  }
 };
 
 const users = {

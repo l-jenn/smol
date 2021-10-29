@@ -183,7 +183,7 @@ app.get("/urls/new", (req, res) => {
 
 // GET /urls/:shortURL
 app.get("/urls/:shortURL", (req, res) => {
-  const templateVars = { smolURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL], user: users[req.cookies["userId"]]};
+  const templateVars = { smolURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL].longURL, user: users[req.cookies["userId"]]};
   // currently catches all urls; need to write if/else to catch if it's stored in db
   res.render("urls_show", templateVars);
 });
@@ -197,7 +197,9 @@ app.post("/urls", (req, res) => {
 
   let shortURL = req.body.alias || generateRandomString();
 
-  urlDatabase[shortURL] = req.body.longURL;
+  urlDatabase[shortURL] = { longURL: req.body.longURL, userId: req.cookies["userId"] };
+  
+  console.log(urlDatabase);
   
   res.redirect(`/urls/${shortURL}`);
 });
@@ -205,7 +207,7 @@ app.post("/urls", (req, res) => {
 // GET /u/:shortURL
 app.get("/u/:shortURL", (req, res) => {
   const shortURL = req.params.shortURL;
-  const longURL = urlDatabase[shortURL];
+  const longURL = urlDatabase[shortURL].longURL;
   res.redirect(longURL);
 });
 
@@ -221,9 +223,9 @@ app.post("/urls/:shortURL/delete", (req, res) => {
 // Edit POST /urls/:shortURL
 app.post("/urls/:shortURL", (req, res) => {
   const shortURL = req.params.shortURL;
-  const newURL = req.body.newURL;
+  const longURL = req.body.longURL;
 
-  urlDatabase[shortURL] = newURL;
+  urlDatabase[shortURL].longURL = longURL;
 
   res.redirect(`/urls/${shortURL}`);
 });

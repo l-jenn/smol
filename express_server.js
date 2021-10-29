@@ -55,7 +55,8 @@ const checkUserByEmail = (email) => {
 
 // GET /register
 app.get("/register", (req, res) => {
-  const templateVars = {username: req.cookies["username"]};
+
+  const templateVars = {user: users[req.cookies["userId"]]};
 
   res.render("register", templateVars);
 });
@@ -89,7 +90,7 @@ app.post("/register", (req, res) => {
 
 // GET /urls
 app.get("/urls", (req, res) => {
-  const templateVars = { urls: urlDatabase, username: req.cookies["username"] };
+  const templateVars = { urls: urlDatabase, user: users[req.cookies["userId"]]};
   res.render("urls_index", templateVars);
 });
 
@@ -100,13 +101,13 @@ app.get("/urls.json", (req, res) => {
 
 // GET /urls/new
 app.get("/urls/new", (req, res) => {
-  const templateVars = { username: req.cookies["username"] };
+  const templateVars = { user: users[req.cookies["userId"]]};
   res.render("urls_new", templateVars);
 });
 
 // GET /urls/:shortURL
 app.get("/urls/:shortURL", (req, res) => {
-  const templateVars = { smolURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL], username: req.cookies["username"] };
+  const templateVars = { smolURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL], user: users[req.cookies["userId"]]};
   // currently catches all urls; need to write if/else to catch if it's stored in db
   res.render("urls_show", templateVars);
 });

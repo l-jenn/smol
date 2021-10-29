@@ -57,8 +57,11 @@ const checkUserByEmail = (email) => {
 
 // GET /register
 app.get("/register", (req, res) => {
-
   const templateVars = {user: users[req.cookies["userId"]]};
+
+  if (req.cookies["userId"]) {
+    return res.redirect("/urls");
+  }
 
   res.render("register", templateVars);
 });
@@ -94,6 +97,10 @@ app.post("/register", (req, res) => {
 app.get("/login", (req, res) => {
 
   const templateVars = {user: users[req.cookies["userId"]]};
+
+  if (req.cookies["userId"]) {
+    return res.redirect("/urls");
+  }
 
   res.render("login", templateVars);
 });

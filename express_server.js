@@ -159,9 +159,10 @@ app.get("/urls.json", (req, res) => {
 
 // GET /urls/new
 app.get("/urls/new", (req, res) => {
-  const templateVars = { user: users[req.cookies["userId"]]};
+  const userId = req.cookies["userId"];
+  const templateVars = {user: users[userId]};
 
-  if (!req.cookies["userId"]) {
+  if (!checkIfUserIsLoggedIn(userId)) {
     return res.redirect("/login");
   }
 

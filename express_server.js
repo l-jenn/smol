@@ -72,7 +72,6 @@ function checkIfUserIsLoggedIn(userId) {
       return true;
     }
   }
-  console.log("couldnt find user bruh!! should be 1st msg");
   return false;
 }
 
@@ -200,6 +199,11 @@ app.get("/urls/new", (req, res) => {
 
 // GET /urls/:shortURL
 app.get("/urls/:shortURL", (req, res) => {
+  console.log(urlDatabase[req.params.shortURL]);
+  if (!urlDatabase[req.params.shortURL]) {
+    return res.status(404).send("Link does not exist.");
+  }
+  
   const templateVars = { smolURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL].longURL, user: users[req.cookies["userId"]]};
   // currently catches all urls; need to write if/else to catch if it's stored in db
   res.render("urls_show", templateVars);
@@ -234,6 +238,12 @@ app.get("/u/:shortURL", (req, res) => {
 
 // Delete POST /urls/:shortURL/delete
 app.post("/urls/:shortURL/delete", (req, res) => {
+  const userId = req.cookies["userId"];
+
+  if (!checkIfUserIsLoggedIn(userId)) {
+    return res.status(403).send("Unauthorized deletion request. Please log in.");
+  }
+
   const shortURL =  req.params.shortURL;
 
   delete urlDatabase[shortURL];
@@ -243,10 +253,15 @@ app.post("/urls/:shortURL/delete", (req, res) => {
 
 // Edit POST /urls/:shortURL
 app.post("/urls/:shortURL", (req, res) => {
+  const userId = req.cookies["userId"];
+
+  if (!checkIfUserIsLoggedIn(userId)) {
+    return res.status(403).send("Unauthorized edit request. Please log in.");
+  }
+
   const shortURL = req.params.shortURL;
   const longURL = req.body.longURL;
-  console.log("uh",req.body.longURL);
-  console.log(urlDatabase[shortURL].longURL);
+
   urlDatabase[shortURL].longURL = longURL;
 
   res.redirect(`/urls/${shortURL}`);

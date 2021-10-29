@@ -178,15 +178,14 @@ app.get("/urls/:shortURL", (req, res) => {
 
 // POST /urls
 app.post("/urls", (req, res) => {
-  let shortURL = "";
-
-  if (req.body.alias !== "") {
-    shortURL = req.body.alias;
-  } else {
-    shortURL = generateRandomString();
+  const userId = req.cookies["userId"];
+  if (!checkIfUserIsLoggedIn(userId)) {
+    return res.status(403).send("Forbidden. Please log in.");
   }
+
+  let shortURL = req.body.alias || generateRandomString();
+
   urlDatabase[shortURL] = req.body.longURL;
-  // console.log(urlDatabase);
   
   res.redirect(`/urls/${shortURL}`);
 });

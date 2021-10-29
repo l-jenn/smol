@@ -43,7 +43,6 @@ function generateRandomString() {
 
 const checkUserByEmail = (email) => {
   // if find user, return user
-
   for (const userId in users) {
     const user = users[userId];
     if (user.email === email) {
@@ -51,15 +50,27 @@ const checkUserByEmail = (email) => {
     }
   }
 
-  // if none, return null
   return null;
 };
 
+function checkIfUserIsLoggedIn(userId) {
+  for (const id in users) {
+    if (users[id].id === userId) {
+      console.log(users[id].id, userId);
+      return true;
+    }
+  }
+  console.log("couldnt find user bruh!! should be 1st msg");
+  return false;
+}
+
+
 // GET /register
 app.get("/register", (req, res) => {
-  const templateVars = {user: users[req.cookies["userId"]]};
+  const userId = req.cookies["userId"];
+  const templateVars = {user: users[userId]};
 
-  if (req.cookies["userId"]) {
+  if (checkIfUserIsLoggedIn(userId)) {
     return res.redirect("/urls");
   }
 
@@ -78,7 +89,6 @@ app.post("/register", (req, res) => {
 
   // if email is taken, return 400
   const user = checkUserByEmail(email);
-
   if (user) {
     return res.status(400).send('email already taken');
   }
@@ -95,10 +105,10 @@ app.post("/register", (req, res) => {
 
 // GET /login
 app.get("/login", (req, res) => {
+  const userId = req.cookies["userId"];
+  const templateVars = {user: users[userId]};
 
-  const templateVars = {user: users[req.cookies["userId"]]};
-
-  if (req.cookies["userId"]) {
+  if (checkIfUserIsLoggedIn(userId)) {
     return res.redirect("/urls");
   }
 
@@ -150,6 +160,11 @@ app.get("/urls.json", (req, res) => {
 // GET /urls/new
 app.get("/urls/new", (req, res) => {
   const templateVars = { user: users[req.cookies["userId"]]};
+
+  if (!req.cookies["userId"]) {
+    return res.redirect("/login");
+  }
+
   res.render("urls_new", templateVars);
 });
 

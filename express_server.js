@@ -244,10 +244,14 @@ app.post("/urls/:shortURL/delete", (req, res) => {
     return res.status(403).send("Unauthorized deletion request. Please log in.");
   }
 
+  // if the shortURL key doesn't exist - in other words, doesn't belong to logged in user
+  const personalList = personalUrls(userId);
   const shortURL =  req.params.shortURL;
+  if (!personalList[shortURL]) {
+    return res.status(404).send("You cannot delete this link as you are not the original creator.");
+  }
 
   delete urlDatabase[shortURL];
-
   res.redirect("/urls");
 });
 
@@ -259,12 +263,17 @@ app.post("/urls/:shortURL", (req, res) => {
     return res.status(403).send("Unauthorized edit request. Please log in.");
   }
 
+  // if the shortURL key doesn't exist - in other words, doesn't belong to logged in user
+  const personalList = personalUrls(userId);
   const shortURL = req.params.shortURL;
   const longURL = req.body.longURL;
 
-  urlDatabase[shortURL].longURL = longURL;
+  if (!personalList[shortURL]) {
+    return res.status(403).send("You cannot edit this link as you are not the original creator.");
+  }
 
-  res.redirect(`/urls/${shortURL}`);
+  urlDatabase[shortURL].longURL = longURL;
+  return res.redirect(`/urls/${shortURL}`);
 });
 
 app.listen(PORT, () => {

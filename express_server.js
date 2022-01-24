@@ -85,6 +85,18 @@ function personalUrls(userId) {
   return personalList;
 }
 
+// GET /
+app.get("/", (req, res) => {
+  const userId = req.cookies["userId"];
+  const templateVars = {user: users[userId]};
+
+  if (checkIfUserIsLoggedIn(userId)) {
+    return res.redirect("/urls");
+  }
+
+  res.redirect("/login");
+});
+
 // GET /register
 app.get("/register", (req, res) => {
   const userId = req.cookies["userId"];

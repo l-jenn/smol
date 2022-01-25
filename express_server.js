@@ -90,7 +90,6 @@ function personalUrls(userId) {
 // GET /
 app.get("/", (req, res) => {
   const userId = req.cookies["userId"];
-  const templateVars = {user: users[userId]};
 
   if (checkIfUserIsLoggedIn(userId)) {
     return res.redirect("/urls");

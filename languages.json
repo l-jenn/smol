@@ -1,0 +1,164 @@
+{
+  "headerMyURLs": {
+    "en": "My URLS",
+    "cat": "Els meus URL",
+    "es": "Mis URL",
+    "pt": "Os meus URLS",
+    "jp": "私のURL",
+    "kr": "내 URL",
+    "vn": "URLs của tôi"
+  },
+  "headerNewURLs": {
+    "en": "Create New URL",
+    "cat": "Crea un URL nou",
+    "es": "Crear nueva URL",
+    "pt": "Criar novo URL",
+    "jp": "新しいURLの作成",
+    "kr": "새 URL 만들기",
+    "vn": "Tạo URL mới"
+  },
+  "login": {
+    "en": "Log In",
+    "cat": "Iniciar sessió",
+    "es": "Iniciar sesión",
+    "pt": "Iniciar sessão",
+    "jp": "ログイン",
+    "kr": "로그 인.",
+    "vn": "Đăng nhập"
+  },
+  "register": {
+    "en": "Register",
+    "cat": "Registrar",
+    "es": "Registrarse",
+    "pt": "Registe-se",
+    "jp": "登録",
+    "kr": "등록하세요",
+    "vn": "Đăng ký"
+  },
+  "logout": {
+    "en": "Log Out",
+    "cat": "Tancar sessió",
+    "es": "Cerrar sesión",
+    "pt": "Sair",
+    "jp": "ログアウト",
+    "kr": "로그 아웃",
+    "vn": "Đăng xuất"
+  },
+  "email": {
+    "en": "E-mail",
+    "cat": "E-mail",
+    "es": "E-mail",
+    "pt": "E-mail",
+    "jp": "電子メール",
+    "kr": "이메일",
+    "vn": "E-mail"
+  },
+  "password": {
+    "en": "Password",
+    "cat": "Contrasenya",
+    "es": "Contraseña",
+    "pt": "Senha",
+    "jp": "パスワード",
+    "kr": "비밀번호",
+    "vn": "Mật khẩu"
+  },
+  "loginFooter": {
+    "en": "Already registered? <a href=\"/login\">Click here</a> to log in.",
+    "cat": "Ja registrat? <a href=\"/login\">Feu clic aquí</a> per iniciar la sessió.",
+    "es": "¿Ya registrado? <a href=\"/login\">Haga clic aquí</a> para iniciar sesión.",
+    "pt": "Já está registado? <a href=\"/login\">Clique aqui</a> para iniciar sessão.",
+    "jp": "すでに登録済みの方 <a href=\"/login\">こちら</a> をクリックしてログインしてください。",
+    "kr": "이미 등록되었습니까? <a href=\"/login\">로그인하려면 여기를 클릭하십시오.</a>",
+    "vn": "Đã đăng ký? <a href=\"/login\"> Nhấp vào đây </a> để đăng nhập."
+  },
+  "submit": {
+    "en": "Submit",
+    "cat": "Enviar",
+    "es": "Entregar",
+    "pt": "Enviar",
+    "jp": "提出",
+    "kr": "제출하다",
+    "vn": "Nộp"
+  },
+  "urls_newHeading": {
+    "en": "Make a smol link!",
+    "cat": "Fes un URL smol!",
+    "es": "¡Haz una smol enlace!",
+    "pt": "Faça uma smol ligação!",
+    "jp": "小さいURLの作成",
+    "kr": "작은 URL 만들기",
+    "vn": "Tạo một liên kết nhỏ!"
+  },
+  "urls_newLongURL": {
+    "en": "Enter a URL",
+    "cat": "Escriviu un URL",
+    "es": "Escribe una URL",
+    "pt": "Digite um URL",
+    "jp": "URLを入力する",
+    "kr": "URL 입력",
+    "vn": "Nhập URL"
+  },
+  "urls_newAlias": {
+    "en": "Custom alias (optional)",
+    "cat": "Àlies personalitzat (opcional)",
+    "es": "Alias personalizado (opcional)",
+    "pt": "Personalizado (opcional)",
+    "jp": "名入れ（オプション）",
+    "kr": "사용자 정의 별칭(옵션)",
+    "vn": "Bí danh tùy chỉnh (tùy chọn)"
+  },
+  "urls_showLong": {
+    "en": "Original URL",
+    "cat": "URL original",
+    "es": "URL original",
+    "pt": "URL original",
+    "jp": "元のURL",
+    "kr": "원본 URL",
+    "vn": "URL gốc"
+  },
+  "urls_showSmol": {
+    "en": "Smol URL",
+    "cat": "Smol URL",
+    "es": "Smol URL",
+    "pt": "Smol URL",
+    "jp": "小さいURL",
+    "kr": "작은 URL",
+    "vn": "URL nhỏ"
+  },
+  "urls_showEdit": {
+    "en": "Edit link",
+    "cat": "Modifica l'URL",
+    "es": "Editar URL",
+    "pt": "Editar link",
+    "jp": "リンクの編集",
+    "kr": "URL 편집",
+    "vn": "Chỉnh sửa liên kết"
+  },
+  "urls_showEditLabel": {
+    "en": "New URL",
+    "cat": "Nou URL",
+    "es": "Nueva URL",
+    "pt": "Novo URL",
+    "jp": "新しいURL",
+    "kr": "새 URL",
+    "vn": "URL mới"
+  },
+  "copy": {
+    "en": "Copy",
+    "cat": "Còpia",
+    "es": "Copiar",
+    "pt": "Cópia",
+    "jp": "コピー",
+    "kr": "알았다.",
+    "vn": "Chép lại"
+  },
+  "rename": {
+    "en": "Rename",
+    "cat": "Canvia el nom",
+    "es": "Renombrar",
+    "pt": "Renomear",
+    "jp": "リネーム",
+    "kr": "이름 바꾸기",
+    "vn": "Đổi tên"
+  }
+}

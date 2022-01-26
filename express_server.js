@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const morgan = require('morgan');
 
 const language = require('./languages.json');
-const languagePreference = 'kr';
+const languagePreference = 'vn';
 
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -204,7 +204,7 @@ app.get("/urls.json", (req, res) => {
 // GET /urls/new
 app.get("/urls/new", (req, res) => {
   const userId = req.cookies["userId"];
-  const templateVars = {user: users[userId]};
+  const templateVars = {lang: language[languagePreference], user: users[userId]};
 
   if (!checkIfUserIsLoggedIn(userId)) {
     return res.redirect("/login");
@@ -220,7 +220,7 @@ app.get("/urls/:shortURL", (req, res) => {
     return res.status(404).send("Link does not exist.");
   }
   
-  const templateVars = { smolURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL].longURL, user: users[req.cookies["userId"]]};
+  const templateVars = {lang: language[languagePreference], smolURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL].longURL, user: users[req.cookies["userId"]]};
   // currently catches all urls; need to write if/else to catch if it's stored in db
   res.render("urls_show", templateVars);
 });

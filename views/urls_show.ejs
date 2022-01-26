@@ -3,7 +3,7 @@
 <head>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <title>url - smol example</title>
+  <title>smol</title>
 </head>
 
 <body>
@@ -11,15 +11,15 @@
   <div class="card text-center">
       <div class="card-header"></div>
       <div class="card-body">
-        <h5 class="card-title">smol lonk for: <%= longURL %></h5>
-        <p class="card-text">smol URL: <a href="/u/<%= smolURL %>"><%= smolURL %></a></p>
+        <h5 class="card-title"><%= lang.urls_showLong %>: <%= longURL %></h5>
+        <p class="card-text"><%= lang.urls_showSmol %>: <a href="/u/<%= smolURL %>"><%= smolURL %></a></p>
       </div>
     <div class="card-footer text-muted">
-      <h2>edit link</h2>
+      <h2><%= lang.urls_showEdit %></h2>
       <form method="POST" action="/urls/<%= smolURL %>">
-        <label>new URL: </label>
+        <label><%= lang.urls_showEditLabel %>: </label>
         <input name="longURL" value="<%= longURL %>">
-        <button type="submit">submit</button>
+        <button type="submit"><%= lang.submit %></button>
       </form>
     </div>
   </div>

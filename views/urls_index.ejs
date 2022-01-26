@@ -8,7 +8,7 @@
 
     <!-- bootstrap css -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <title>smol.meows</title>
+    <title>smol - <%= lang.headerMyURLs %></title>
   </head>
 
   <body>
@@ -18,10 +18,10 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">short url</th>
-            <th scope="col">long url</th>
-            <th scope="col">edit</th>
-            <th scope="col">delete</th>
+            <th scope="col"><%= lang.urls_showSmol %></th>
+            <th scope="col"><%= lang.urls_showLong %></th>
+            <th scope="col"><%= lang.edit %></th>
+            <th scope="col"><%= lang.delete %></th>
           </tr>
         </thead>
         <tbody>
@@ -31,12 +31,12 @@
               <td><%= urls[url].longURL %></td>
               <td>
                 <form method="GET" action="/urls/<%= url %>">
-                  <button type="submit">Edit</button>
+                  <button type="submit"><%= lang.edit %></button>
                 </form>
               </td>
               <td>
                 <form method="POST" action="/urls/<%= url %>/delete">
-                  <button type="submit">Delete</button>
+                  <button type="submit"><%= lang.delete %></button>
                 </form>
               </td>
             </tr>

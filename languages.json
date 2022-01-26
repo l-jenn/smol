@@ -112,7 +112,7 @@
   "kr": {
     "headerMyURLs": "내 URL",
     "headerNewURLs": "새 URL 만들기",
-    "login": "로그 인.",
+    "login": "로그 인",
     "register": "등록하세요",
     "logout": "로그 아웃",
     "email": "이메일",
@@ -128,7 +128,7 @@
     "urls_showSmol": "작은 URL",
     "urls_showEdit": "URL 편집",
     "urls_showEditLabel": "새 URL",
-    "copy": "알았다.",
+    "copy": "알았다",
     "rename": "이름 바꾸기"
   },
   "vn": {

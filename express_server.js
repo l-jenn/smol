@@ -104,7 +104,7 @@ app.get("/", (req, res) => {
 // GET /register
 app.get("/register", (req, res) => {
   const userId = req.cookies["userId"];
-  const templateVars = { lang: language[languagePreference], user: users[userId]};
+  const templateVars = {lang: language[languagePreference], user: users[userId]};
 
   if (checkIfUserIsLoggedIn(userId)) {
     return res.redirect("/urls");
@@ -142,7 +142,7 @@ app.post("/register", (req, res) => {
 // GET /login
 app.get("/login", (req, res) => {
   const userId = req.cookies["userId"];
-  const templateVars = {user: users[userId]};
+  const templateVars = {lang: language[languagePreference], user: users[userId]};
 
   if (checkIfUserIsLoggedIn(userId)) {
     return res.redirect("/urls");
@@ -192,7 +192,7 @@ app.get("/urls", (req, res) => {
   const urls = personalUrls(userId);
   console.log(urls);
 
-  const templateVars = { urls, user: users[req.cookies["userId"]]};
+  const templateVars = {lang: language[languagePreference], urls, user: users[req.cookies["userId"]]};
   res.render("urls_index", templateVars);
 });
 

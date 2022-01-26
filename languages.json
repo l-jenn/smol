@@ -19,7 +19,9 @@
     "urls_showEdit": "Edit link",
     "urls_showEditLabel": "New URL",
     "copy": "Copy",
-    "rename": "Rename"
+    "rename": "Rename",
+    "delete": "Delete",
+    "edit": "Edit"
   },
   "cat": {
     "headerMyURLs": "Els meus URL",
@@ -41,7 +43,9 @@
     "urls_showEdit": "Modifica l'URL",
     "urls_showEditLabel": "Nou URL",
     "copy": "Còpia",
-    "rename": "Canvia el nom"
+    "rename": "Canvia el nom",
+    "delete": "Esborrar",
+    "edit": "Modifica"
   },
   "es": {
     "headerMyURLs": "Mis URL",
@@ -63,7 +67,9 @@
     "urls_showEdit": "Editar URL",
     "urls_showEditLabel": "Nueva URL",
     "copy": "Copiar",
-    "rename": "Renombrar"
+    "rename": "Renombrar",
+    "delete": "Eliminar",
+    "edit": "Editar"
   },
   "pt": {
     "headerMyURLs": "Os meus URLS",
@@ -85,7 +91,9 @@
     "urls_showEdit": "Editar link",
     "urls_showEditLabel": "Novo URL",
     "copy": "Cópia",
-    "rename": "Renomear"
+    "rename": "Renomear",
+    "delete": "Excluir",
+    "edit": "Editar"
   },
   "jp": {
     "headerMyURLs": "私のURL",
@@ -107,12 +115,14 @@
     "urls_showEdit": "リンクの編集",
     "urls_showEditLabel": "新しいURL",
     "copy": "コピー",
-    "rename": "リネーム"
+    "rename": "リネーム",
+    "delete": "デリート",
+    "edit": "編集"
   },
   "kr": {
     "headerMyURLs": "내 URL",
     "headerNewURLs": "새 URL 만들기",
-    "login": "로그 인",
+    "login": "로그 인.",
     "register": "등록하세요",
     "logout": "로그 아웃",
     "email": "이메일",
@@ -128,8 +138,10 @@
     "urls_showSmol": "작은 URL",
     "urls_showEdit": "URL 편집",
     "urls_showEditLabel": "새 URL",
-    "copy": "알았다",
-    "rename": "이름 바꾸기"
+    "copy": "알았다.",
+    "rename": "이름 바꾸기",
+    "delete": "삭제",
+    "edit": "편집"
   },
   "vn": {
     "headerMyURLs": "URLs của tôi",
@@ -151,6 +163,8 @@
     "urls_showEdit": "Chỉnh sửa liên kết",
     "urls_showEditLabel": "URL mới",
     "copy": "Chép lại",
-    "rename": "Đổi tên"
+    "rename": "Đổi tên",
+    "delete": "Xóa",
+    "edit": "Chỉnh"
   }
 }

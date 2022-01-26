@@ -4,6 +4,9 @@ const PORT = 8080;
 const cookieParser = require("cookie-parser");
 const morgan = require('morgan');
 
+const language = require('./languages.json');
+const languagePreference = 'kr';
+
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(morgan('dev'));
@@ -101,7 +104,7 @@ app.get("/", (req, res) => {
 // GET /register
 app.get("/register", (req, res) => {
   const userId = req.cookies["userId"];
-  const templateVars = {user: users[userId]};
+  const templateVars = { lang: language[languagePreference], user: users[userId]};
 
   if (checkIfUserIsLoggedIn(userId)) {
     return res.redirect("/urls");

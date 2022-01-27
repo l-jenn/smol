@@ -5,11 +5,12 @@ const cookieParser = require("cookie-parser");
 const morgan = require('morgan');
 
 const language = require('./languages.json');
-const languagePreference = 'vn';
 
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(morgan('dev'));
+
+let languagePreference = "en";
 
 app.set("view engine", "ejs");
 
@@ -89,6 +90,14 @@ function personalUrls(userId) {
   }
   return personalList;
 }
+
+// GET /languages/:languagePreference
+app.get("/language/:languagePreference", (req, res) => {
+  languagePreference = req.params.languagePreference;
+
+  res.cookie("lang", languagePreference);
+  res.redirect("/");
+});
 
 // GET /
 app.get("/", (req, res) => {

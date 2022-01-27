@@ -91,18 +91,13 @@ function personalUrls(userId) {
   return personalList;
 }
 
-// // GET /language/:languagePreference
-// app.get("/language/:languagePreference", (req, res) => {
-//   languagePreference = req.params.languagePreference;
-
-//   res.cookie("lang", languagePreference);
-//   res.redirect("back");
-// });
-
-// GET /language/:languagePreference
+// POST /language/:languagePreference
 app.post("/lang", (req, res) => {
-  languagePreference = req.body.language;
+  if (!language[req.body.language]) {
+    return res.status(400).send("Invalid or language not supported.");
+  }
 
+  languagePreference = req.body.language;
   res.cookie("lang", languagePreference);
   res.redirect("back");
 });

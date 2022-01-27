@@ -91,13 +91,22 @@ function personalUrls(userId) {
   return personalList;
 }
 
-// GET /languages/:languagePreference
-app.get("/language/:languagePreference", (req, res) => {
-  languagePreference = req.params.languagePreference;
+// // GET /language/:languagePreference
+// app.get("/language/:languagePreference", (req, res) => {
+//   languagePreference = req.params.languagePreference;
+
+//   res.cookie("lang", languagePreference);
+//   res.redirect("back");
+// });
+
+// GET /language/:languagePreference
+app.post("/lang", (req, res) => {
+  languagePreference = req.body.language;
 
   res.cookie("lang", languagePreference);
-  res.redirect("/");
+  res.redirect("back");
 });
+
 
 // GET /
 app.get("/", (req, res) => {

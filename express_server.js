@@ -4,7 +4,7 @@ const PORT = 8080;
 const cookieParser = require("cookie-parser");
 const morgan = require('morgan');
 
-const language = require('./languages.json');
+const languages = require('./languages.json');
 
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -91,9 +91,9 @@ function personalUrls(userId) {
   return personalList;
 }
 
-// POST /language/:languagePreference
+// POST /lang
 app.post("/lang", (req, res) => {
-  if (!language[req.body.language]) {
+  if (!languages[req.body.language]) {
     return res.status(400).send("Invalid or language not supported.");
   }
 
@@ -119,7 +119,7 @@ app.get("/", (req, res) => {
 app.get("/register", (req, res) => {
   languagePreference = req.cookies["lang"] || "en";
   const userId = req.cookies["userId"];
-  const templateVars = {lang: language[languagePreference], user: users[userId]};
+  const templateVars = {lang: languages[languagePreference], user: users[userId]};
 
   if (checkIfUserIsLoggedIn(userId)) {
     return res.redirect("/urls");
@@ -158,7 +158,7 @@ app.post("/register", (req, res) => {
 app.get("/login", (req, res) => {
   languagePreference = req.cookies["lang"] || "en";
   const userId = req.cookies["userId"];
-  const templateVars = {lang: language[languagePreference], user: users[userId]};
+  const templateVars = {lang: languages[languagePreference], user: users[userId]};
 
   if (checkIfUserIsLoggedIn(userId)) {
     return res.redirect("/urls");
@@ -209,7 +209,7 @@ app.get("/urls", (req, res) => {
   const urls = personalUrls(userId);
   console.log(urls);
 
-  const templateVars = {lang: language[languagePreference], urls, user: users[req.cookies["userId"]]};
+  const templateVars = {lang: languages[languagePreference], urls, user: users[req.cookies["userId"]]};
   res.render("urls_index", templateVars);
 });
 
@@ -222,7 +222,7 @@ app.get("/urls.json", (req, res) => {
 app.get("/urls/new", (req, res) => {
   languagePreference = req.cookies["lang"] || "en";
   const userId = req.cookies["userId"];
-  const templateVars = {lang: language[languagePreference], user: users[userId]};
+  const templateVars = {lang: languages[languagePreference], user: users[userId]};
 
   if (!checkIfUserIsLoggedIn(userId)) {
     return res.redirect("/login");
@@ -239,7 +239,7 @@ app.get("/urls/:shortURL", (req, res) => {
     return res.status(404).send("Link does not exist.");
   }
   
-  const templateVars = {lang: language[languagePreference], smolURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL].longURL, user: users[req.cookies["userId"]]};
+  const templateVars = {lang: languages[languagePreference], smolURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL].longURL, user: users[req.cookies["userId"]]};
   // currently catches all urls; need to write if/else to catch if it's stored in db
   res.render("urls_show", templateVars);
 });

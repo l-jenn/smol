@@ -106,6 +106,7 @@ app.post("/lang", (req, res) => {
 // GET /
 app.get("/", (req, res) => {
   const userId = req.cookies["userId"];
+  languagePreference = req.cookies["lang"] || "en";
 
   if (checkIfUserIsLoggedIn(userId)) {
     return res.redirect("/urls");
@@ -116,6 +117,7 @@ app.get("/", (req, res) => {
 
 // GET /register
 app.get("/register", (req, res) => {
+  languagePreference = req.cookies["lang"] || "en";
   const userId = req.cookies["userId"];
   const templateVars = {lang: language[languagePreference], user: users[userId]};
 
@@ -154,6 +156,7 @@ app.post("/register", (req, res) => {
 
 // GET /login
 app.get("/login", (req, res) => {
+  languagePreference = req.cookies["lang"] || "en";
   const userId = req.cookies["userId"];
   const templateVars = {lang: language[languagePreference], user: users[userId]};
 
@@ -197,6 +200,7 @@ app.post("/logout", (req, res) => {
 
 // GET /urls
 app.get("/urls", (req, res) => {
+  languagePreference = req.cookies["lang"] || "en";
   const userId = req.cookies["userId"];
   if (!checkIfUserIsLoggedIn(userId)) {
     return res.status(403).send("Please log in.");
@@ -216,6 +220,7 @@ app.get("/urls.json", (req, res) => {
 
 // GET /urls/new
 app.get("/urls/new", (req, res) => {
+  languagePreference = req.cookies["lang"] || "en";
   const userId = req.cookies["userId"];
   const templateVars = {lang: language[languagePreference], user: users[userId]};
 
@@ -228,6 +233,7 @@ app.get("/urls/new", (req, res) => {
 
 // GET /urls/:shortURL
 app.get("/urls/:shortURL", (req, res) => {
+  languagePreference = req.cookies["lang"] || "en";
   console.log(urlDatabase[req.params.shortURL]);
   if (!urlDatabase[req.params.shortURL]) {
     return res.status(404).send("Link does not exist.");
@@ -256,6 +262,7 @@ app.post("/urls", (req, res) => {
 
 // GET /u/:shortURL
 app.get("/u/:shortURL", (req, res) => {
+  languagePreference = req.cookies["lang"] || "en";
   console.log(urlDatabase[req.params.shortURL]);
   if (!urlDatabase[req.params.shortURL]) {
     return res.status(404).send("Link does not exist.");
